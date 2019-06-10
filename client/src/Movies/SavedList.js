@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Prop from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default class SavedList extends Component {
   constructor(props) {
@@ -13,9 +13,16 @@ export default class SavedList extends Component {
       <div className="saved-list">
         <h3>Saved Movies:</h3>
         {list.map(movie => (
-          <Link key={movie.id} to={`/movies/${movie.id}`}>
+          <NavLink
+            key={movie.id}
+            to={`/movies/${movie.id}`}
+            activeStyle={{
+              fontWeight: "bold",
+              color: "red"
+            }}
+          >
             <span className="saved-movie">{movie.title}</span>
-          </Link>
+          </NavLink>
         ))}
 
         <Link to="/">
