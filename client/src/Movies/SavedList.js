@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Prop from 'prop-types';
 import { Link } from "react-router-dom";
 
 export default class SavedList extends Component {
@@ -24,3 +25,7 @@ export default class SavedList extends Component {
     );
   }
 }
+
+SavedList.propTypes = {
+  list: Prop.arrayOf(Prop.object).isRequired
+};

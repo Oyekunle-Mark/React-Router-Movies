@@ -1,4 +1,5 @@
 import React from "react";
+import Prop from "prop-types";
 
 const MovieCard = ({ movie }) => {
   const { title, director, metascore, stars } = movie;
@@ -21,6 +22,15 @@ const MovieCard = ({ movie }) => {
       ))}
     </div>
   );
+};
+
+MovieCard.propTypes = {
+  movie: Prop.shape({
+    title: Prop.string.isRequired,
+    director: Prop.string.isRequired,
+    metascore: Prop.number.isRequired,
+    stars: Prop.arrayOf(Prop.string).isRequired
+  }).isRequired
 };
 
 export default MovieCard;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import MovieCard from './MovieCard';
+import MovieCard from "./MovieCard";
 
 export default class MovieList extends Component {
   constructor(props) {
@@ -28,18 +28,11 @@ export default class MovieList extends Component {
     return (
       <div className="movie-list">
         {movies.map(movie => (
-          <MovieDetails key={movie.id} movie={movie} />
+          <Link key={movie.id} to={`/movies/${movie.id}`}>
+            <MovieCard movie={movie} />
+          </Link>
         ))}
       </div>
     );
   }
-}
-
-function MovieDetails({ movie }) {
-  const { id } = movie;
-  return (
-    <Link to={`/movies/${id}`}>
-      <MovieCard movie={movie} />
-    </Link>
-  );
 }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Prop from 'prop-types';
 import axios from "axios";
 
 import MovieCard from "./MovieCard";
@@ -56,3 +57,7 @@ export default class Movie extends Component {
     );
   }
 }
+
+Movie.propTypes = {
+  handleSave: Prop.func.isRequired
+};
