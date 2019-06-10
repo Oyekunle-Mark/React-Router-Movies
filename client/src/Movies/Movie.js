@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Prop from 'prop-types';
+import Prop from "prop-types";
 import axios from "axios";
 
 import MovieCard from "./MovieCard";
@@ -17,6 +17,12 @@ export default class Movie extends Component {
     this.fetchMovie(id);
   }
 
+  componentWillReceiveProps(newProps) {
+    if (this.props.match.params.id !== newProps.match.params.id) {
+      this.fetchMovie(newProps.match.params.id);
+    }
+  }
+
   fetchMovie = id => {
     axios
       .get(`http://localhost:5000/api/movies/${id}`)
@@ -27,21 +33,14 @@ export default class Movie extends Component {
         console.error(error);
       });
   };
-  // Uncomment this code when you're ready for the stretch problems
-  // componentWillReceiveProps(newProps){
-  //   if(this.props.match.params.id !== newProps.match.params.id){
-  //     this.fetchMovie(newProps.match.params.id);
-  //   }
-  // }
 
-  // saveMovie = () => {
-  //   const addToSavedList = this.props.addToSavedList;
-  //   addToSavedList(this.state.movie)
-  // }
+  saveMovie = () => {
+    const { handleSave } = this.props;
+    handleSave(this.state.movie);
+  };
 
   render() {
     const { movie } = this.state;
-    const { handleSave } = this.props;
 
     if (!movie) {
       return <div>Loading movie information...</div>;
@@ -50,7 +49,7 @@ export default class Movie extends Component {
     return (
       <div className="save-wrapper">
         <MovieCard movie={movie} />
-        <div onClick={() => handleSave(movie)} className="save-button">
+        <div onClick={this.saveMovie} className="save-button">
           Save
         </div>
       </div>
