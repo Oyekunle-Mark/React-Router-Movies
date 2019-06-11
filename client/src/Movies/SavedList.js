@@ -3,10 +3,6 @@ import Prop from "prop-types";
 import { Link, NavLink } from "react-router-dom";
 
 export default class SavedList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { list } = this.props;
     return (
